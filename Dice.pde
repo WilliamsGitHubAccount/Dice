@@ -1,12 +1,10 @@
-    Die die = new Die(200, 200, 50);
+
    ArrayList<Die> dice = new ArrayList<Die>();
+   int sum = 0;
 void setup()
 {
   background(200, 200, 230);
   size(800, 800);
-
-  die.roll();
-  die.show();
 }
 void draw()
 {
@@ -14,9 +12,8 @@ void draw()
   textAlign(CENTER);
   textSize(84);
   fill(100, 408, 612);
-  text("CLICK TO ROLL!!!", 400, 400);
-	//your code here
-  die.update();
+  text("CLICK TO ROLL", 400, 400);
+  text(sum, 400, 480);
   for(int i = 0 ; i < dice.size() ; i++){
     dice.get(i).update();
   }
@@ -24,7 +21,9 @@ void draw()
 }
 void mousePressed()
 {
-  dice.add(new Die(0, (int)(Math.random()*500-100), 50));
+  Die d = new Die(0, (int)(Math.random()*500-100), 50);
+  dice.add(d);
+  sum += d.value;
   if(dice.size() == 101){
     dice.remove(0);
   }
@@ -78,7 +77,6 @@ class Die //models one single dice cube
     }
     if(millis()-collisionx >= 300){
     if(x <= 0 || x+size >= 800){
-      System.out.println(Vx);
       Vx = -Vx*15/16;
       collisionx = millis();
     }

@@ -68,7 +68,6 @@ class Die //models one single dice cube
   void collisionUpdate(){
     if(millis()-collisiony >= 300){
       if(y+size >= 800){
-        System.out.println(Vy);
         Vy = -Vy*15/16;
         collisiony = millis();
         
